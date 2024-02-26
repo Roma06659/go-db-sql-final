@@ -110,6 +110,7 @@ func TestSetStatus(t *testing.T) {
 	if err != nil {
 		return
 	}
+
 	require.NoError(t, err)
 	require.NotEmpty(t, AddParcel)
 	// set status
