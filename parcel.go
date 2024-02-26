@@ -51,7 +51,7 @@ func (s ParcelStore) GetByClient(client int) ([]Parcel, error) {
 	// здесь из таблицы может вернуться несколько строк
 
 	var res []Parcel
-	row, err := s.db.Query("SELECT number, client, status, address, created_at, FROM parcel WHERE client = :client", sql.Named("client", client))
+	row, err := s.db.Query("SELECT number, client, status, address, created_at FROM parcel WHERE client = :client", sql.Named("client", client))
 	if err != nil {
 		return res, err
 	}
