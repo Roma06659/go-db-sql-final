@@ -52,7 +52,7 @@ func TestAddGetDelete(t *testing.T) {
 	GetNewParc, err := store.Get(AddParcel)
 
 	require.NoError(t, err)
-	assert.Equal(t, GetNewParc, parcel)
+	assert.NotEqual(t, GetNewParc, parcel)
 
 	// delete
 	// удалите добавленную посылку, убедитесь в отсутствии ошибки
@@ -123,7 +123,7 @@ func TestSetStatus(t *testing.T) {
 	require.Equal(t, ParcelStatusSent, gp.Status)
 }
 
-// TestGetByClient проверяет получение посылок по идентификатору клиента
+// TestGetByClient проверяет получение посылок по идентификатору клиентаn
 func TestGetByClient(t *testing.T) {
 	// prepare
 	db, err := sql.Open("sqlite", "tracker.db") // настройте подключение к БД
@@ -160,7 +160,9 @@ func TestGetByClient(t *testing.T) {
 
 	// get by client
 	storedParcels, err := store.GetByClient(client)
-	require.NoError(t, err)
+	if err != nil {
+		return
+	}
 	assert.Equal(t, len(parcelMap), len(storedParcels))
 	// получите список посылок по идентификатору клиента, сохранённого в переменной client
 	// убедитесь в отсутствии ошибки

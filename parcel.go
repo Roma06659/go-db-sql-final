@@ -16,7 +16,7 @@ func (s ParcelStore) Add(p Parcel) (int, error) {
 	// реализуйте добавление строки в таблицу parcel, используйте данные из переменной p
 	// верните идентификатор последней добавленной записи
 
-	res, err := s.db.Exec("INSERT INTO parcel (client, status, address, createdAt) VALUES (:client, :status, :address, :created_at)",
+	res, err := s.db.Exec("INSERT INTO parcel (client, status, address, created_at) VALUES (:client, :status, :address, :created_at)",
 		sql.Named("client", p.Client),
 		sql.Named("status", p.Status),
 		sql.Named("address", p.Address),
@@ -103,6 +103,7 @@ func (s ParcelStore) Delete(number int) error {
 		sql.Named("status", ParcelStatusRegistered))
 	if err != nil {
 		return err
+
 	}
 	return nil
 }
